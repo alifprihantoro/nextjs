@@ -12,6 +12,6 @@ if (!error) {
 }
  const { type } = error
  const msg = getErrMsg(type)
- return <>{msg}</>
+ return <span className="text-red-900 font-bold">{msg}</span>
 }
 
