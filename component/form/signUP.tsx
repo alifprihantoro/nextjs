@@ -1,19 +1,14 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { SignIn } from "../../firebase";
-import Logout from "../logout";
+import {SignUp} from "../../firebase";
 import { FormErrorLogin } from "./error";
-import SignUpForm from "./signUP";
 
 type Inputs = {
   email: string;
   password: string;
 };
-
-export default function FormLogin() {
+export default function SignUpForm() {
   const [ErrLogin, setErrLogin] = useState("");
-  const [IsLogin, setIsLogin] = useState(false);
   const {
     register,
     handleSubmit,
@@ -23,27 +18,14 @@ export default function FormLogin() {
   const onSubmit = async (e: any) => {
     setErrLogin("");
     const { email, password } = e;
+    console.log(email)
     try {
-      await SignIn(email, password);
-      setIsLogin(true);
+      await SignUp(email, password);
     } catch (err) {
       setErrLogin("email/password salah");
     }
   };
-  useEffect(() => {
-    onAuthStateChanged(getAuth(), (user: any) => {
-      if (user) {
-        setIsLogin(true);
-        console.log(user.uid);
-        console.log(user);
-        return;
-      }
-      setIsLogin(false);
-    });
-  }, []);
-  if (!IsLogin) {
-    return (
-      <>
+  return (
         <form onSubmit={handleSubmit(onSubmit)}>
           {ErrLogin !== "" && <span>{ErrLogin}</span>}
           <input
@@ -63,10 +45,5 @@ export default function FormLogin() {
             type="submit"
           />
         </form>
-        <SignUpForm/>
-      </>
-    );
-  } else {
-    return <Logout setIsLogin={setIsLogin} />;
-  }
+  )
 }
