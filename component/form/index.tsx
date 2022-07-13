@@ -3,7 +3,8 @@ import SignUpForm from "./signUP";
 import React, { useContext } from "react";
 import { loginContext, LoginContext } from "../../context/login";
 import LoginForm from "./login";
-import UpdateUsrFirebase from "../../firebase/update";
+import deleteAccount from "../../firebase/deleteAccount";
+import ChangeDataUser from "./changeDataUser";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function FormLogin() {
@@ -32,6 +33,8 @@ export default function FormLogin() {
         <div>Nama : {context.data.name}</div>
         <div>Email : {context.data.email}</div>
         <div>profile : {context.data.url}</div>
+        <button className='bg-red-900 text-white' onClick={deleteAccount}>delete account</button>
+        <ChangeDataUser context={context}/>
       </>
     );
   }

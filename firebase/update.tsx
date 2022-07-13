@@ -1,8 +1,8 @@
 import { getAuth, updateProfile, User } from "firebase/auth";
 
-export default function UpdateUsrFirebase({displayName, photoURL }: any) {
+export default async function UpdateUsrFirebase({displayName, photoURL }: any) {
   const auth = getAuth();
-  updateProfile(auth.currentUser as User, {
+  await updateProfile(auth.currentUser as User, {
     displayName,
     photoURL,
   })
