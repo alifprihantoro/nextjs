@@ -8,7 +8,7 @@ type Inputs = {
   password: string;
 };
 
-export default function LoginForm({setIsLogin}:any) {
+export default function LoginForm({context}:any) {
   const [ErrLogin, setErrLogin] = useState("");
   const {
     register,
@@ -17,13 +17,15 @@ export default function LoginForm({setIsLogin}:any) {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit = async (e: any) => {
+    context.setisLoading(true)
     setErrLogin("");
-    const { email, password } = e;
+    let { email, password } = e;
     try {
       await SignIn(email, password);
-      setIsLogin(true);
+      context.setisLoading(false)
     } catch (err) {
       setErrLogin("email/password salah");
+      context.setisLoading(false)
     }
   };
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import SignUp from "../../firebase/signup";
 import { FormErrorLogin } from "./error";
 
@@ -7,7 +7,7 @@ type Inputs = {
   email: string;
   password: string;
 };
-export default function SignUpForm({setIsLogin}:any) {
+export default function SignUpForm({context}:any) {
   // set error form
   const [ErrLogin, setErrLogin] = useState("");
   // function form/handling err/onsubmit
@@ -19,6 +19,7 @@ export default function SignUpForm({setIsLogin}:any) {
   } = useForm<Inputs>();
   // if submit klick
   const onSubmit = async (e: any) => {
+    context.setisLoading(true)
     setErrLogin("");
     // get form
     const { email, password } = e;
@@ -27,9 +28,10 @@ export default function SignUpForm({setIsLogin}:any) {
     // exec signup
     try {
       await SignUp(email, password);
-      setIsLogin(true);
+    context.setisLoading(false)
     } catch (err) {
-      setErrLogin("email/password salah");
+      setErrLogin("email sudah dipakai");
+    context.setisLoading(false)
     }
   };
   return (

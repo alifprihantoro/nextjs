@@ -24,17 +24,3 @@ if (!getApps().length) {
 }
 
 export const FirebaseAuth = getAuth()
-export const SignUp = async(email:string, password:string)=>{
-  // await createUserWithEmailAndPassword(FirebaseAuth, email, password)
-  const create=await createUserWithEmailAndPassword(FirebaseAuth, email, password)
-  console.log('ini signup')
-  console.log(create)
-}
-export const SignIn = async(email:string, password:string)=> {
-  const create = await signInWithEmailAndPassword(FirebaseAuth, email, password)
-  console.log('ini signin :')
-  console.log(create)
-}
-export const SignOut = async()=> {
-  await signOut(FirebaseAuth)
-}

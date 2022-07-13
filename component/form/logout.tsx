@@ -1,12 +1,14 @@
 import SignOut from "../../firebase/logout";
 
-export default function Logout({setIsLogin}:any) {
+export default function Logout({ context }: any) {
   return (
     <button
       className="bg-red-900 rounded-xl text-white p-3"
       onClick={() => {
+        context.setisLoading(true);
         SignOut();
-        setIsLogin(false);
+        context.setIsLogin(false);
+        context.setisLoading(false);
       }}
     >
       Logout

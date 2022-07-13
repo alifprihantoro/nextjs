@@ -13,26 +13,21 @@ export default function FormLogin() {
   // console.log(context.isLogin)
 
   // cek isLogin -------------
-  // useEffect(() => {
-  //   onAuthStateChanged(getAuth(), (user: any) => {
-  //     if (user) {
-  //       setIsLogin(true);
-  //       console.log(user.uid);
-  //       console.log(user);
-  //       return;
-  //     }
-  //     setIsLogin(false);
-  //   });
-  // }, []);
 
   if (!context.isLogin) {
     return (
       <>
-        <LoginForm setIsLogin={context.setIsLogin}/>
-        <SignUpForm setIsLogin={context.setIsLogin}/>
+        <LoginForm context={context}/>
+        <SignUpForm context={context}/>
       </>
     );
   } else {
-    return <Logout setIsLogin={context.setIsLogin}/>;
+    return (
+      <>
+        <Logout context={context} />
+        <div>Nama : {context.data.name}</div>
+        <div>Email : {context.data.email}</div>
+      </>
+    );
   }
 }
