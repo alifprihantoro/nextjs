@@ -1,6 +1,6 @@
-import { SignOut } from "../../firebase";
+import SignOut from "../../firebase/logout";
 
-export default function Logout({ setIsLogin }: any) {
+export default function Logout({setIsLogin}:any) {
   return (
     <button
       className="bg-red-900 rounded-xl text-white p-3"
