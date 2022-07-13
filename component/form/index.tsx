@@ -17,7 +17,9 @@ export default function FormLogin() {
   if (!context.isLogin) {
     return (
       <>
+        <h2>login</h2>
         <LoginForm context={context}/>
+        <h2>signup</h2>
         <SignUpForm context={context}/>
       </>
     );

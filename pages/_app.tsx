@@ -4,6 +4,7 @@ import { LoginContext, loginContext } from "../context/login";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Template from "../component/template";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLogin, setIsLogin] = useState(false);
@@ -41,7 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className={styles.container}>
       <LoginContext.Provider value={loginContext}>
+        <Template>
         <Component {...pageProps} />
+        </Template>
       </LoginContext.Provider>
     </div>
   );
