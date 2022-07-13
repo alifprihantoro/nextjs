@@ -5,10 +5,14 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Template from "../component/template";
+import ShowData from "../component/form/showData";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLogin, setIsLogin] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    name: "",
+    url: "",
+  });
   const [isLoading, setisLoading] = useState(true);
   const loginContext: loginContext = {
     isLogin,
@@ -23,11 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       if (user) {
         setIsLogin(true);
         // console.log(user.uid);
-        // console.log(user);
-        const name = user.email?.replace(/\@.*/, "");
-        const email = user.email;
-        setData({ name, email });
-        // console.log(context.data);
+        ShowData({ setData, user });
         setisLoading(false);
         return;
       }
@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={styles.container}>
       <LoginContext.Provider value={loginContext}>
         <Template>
-        <Component {...pageProps} />
+          <Component {...pageProps} />
         </Template>
       </LoginContext.Provider>
     </div>
