@@ -3,9 +3,10 @@ import type { AppProps } from "next/app";
 import { LoginContext, loginContext } from "../context/login";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {  onAuthStateChanged } from "firebase/auth";
 import Template from "../component/template";
 import GetDataFromFirebase from "../component/form/showData";
+import {FirebaseAuth} from "../firebase";
 
 // cek apakah ini sudah di eksekusi ( useEffect )
 let isExecute = false;
@@ -34,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       // ubah menjadi true
       isExecute = true;
       // mengambil data user short
-      onAuthStateChanged(getAuth(), (user: any) => {
+      onAuthStateChanged(FirebaseAuth, (user: any) => {
         // jika user login
         if (user) {
           setIsLogin(true);
@@ -49,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         return;
       });
     }
-  }, []);
+  }, [isLogin]);
 
   if (isLoading) {
     return <>loading...</>;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import deleteAccount from "../firebase/deleteAccount";
+import DeleteAccount from "../firebase/deleteAccount";
 import { FormErrorLogin } from "./form/error";
 
 type Inputs = {
@@ -17,16 +17,8 @@ export default function DeleteAccountBtn({ context }: any) {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit = async (e: any) => {
-    context.setisLoading(true);
-    setErrLogin("");
     let { password } = e;
-    try {
-      const email = context.data.email
-      await deleteAccount(email, password);
-      console.log('sucses delete')
-    } catch (err) {
-      setErrLogin("delete gagal");
-    }
+    DeleteAccount({ context, password, setErrLogin });
   };
   return (
     <>
@@ -43,7 +35,7 @@ export default function DeleteAccountBtn({ context }: any) {
         <input
           className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
-          defaultValue='delete'
+          defaultValue="delete"
         />
       </form>
     </>

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import SignIn from "../../firebase/login";
 import { FormErrorLogin } from "./error";
+import { loginContext, LoginContext } from "../../context/login";
 
 type Inputs = {
   email: string;
   password: string;
 };
 
-export default function LoginForm({context}:any) {
+export default function LoginForm() {
+  const context = useContext(LoginContext) as loginContext;
   const [ErrLogin, setErrLogin] = useState("");
   const {
     register,
@@ -22,7 +24,10 @@ export default function LoginForm({context}:any) {
     let { email, password } = e;
     try {
       await SignIn(email, password);
+    context.setisLoading(false)
+    context.setIsLogin(true)
     } catch (err) {
+    context.setisLoading(false)
       setErrLogin("email/password salah");
     }
   };
