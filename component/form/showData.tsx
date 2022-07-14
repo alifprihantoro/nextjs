@@ -1,8 +1,11 @@
-export default function ShowData({setData, user}:any) {
+export default function ShowData({ setData, user }: any) {
   // console.log(user);
   const name = user.displayName;
   const email = user.email;
   const url = user.photoURL;
-  setData({ name, email, url });
+  const isVerified = user.emailVerified;
+  const isAnonymous = user.isAnonymous;
+  const phoneNumber = user.phoneNumber;
+  setData({ name, email, url, isVerified, isAnonymous, phoneNumber });
   // console.log(context.data);
 }

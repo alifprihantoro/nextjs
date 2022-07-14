@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import UpdateUsrFirebase from "../../firebase/update";
 import { FormErrorLogin } from "./error";
+import UpdateEmail from "../../firebase/changeEmail";
 
 type Inputs = {
-  displayName: string;
-  photoURL: string;
-  register: any;
+  email: string;
 };
-export default function CangeDataUserForm({ context }: any) {
+export default function CangeEmailForm({ context }: any) {
   // set error form
   const [ErrLogin, setErrLogin] = useState("");
   // function form/handling err/onsubmit
@@ -23,19 +21,16 @@ export default function CangeDataUserForm({ context }: any) {
     context.setisLoading(true);
     setErrLogin("");
     // get form
-    const { displayName, photoURL } = e;
+    const { email } = e;
     // console.log(email);
     // exec signup
     try {
-      await UpdateUsrFirebase({ displayName, photoURL }).then(() => {
-        context.setData({
-          ...context.data,
-          displayName,
-          photoURL,
-        });
+      await UpdateEmail(email).then(() => {
+        // context.setData({ ...context.data, email });
+        context.setisLoading(false);
       });
     } catch (err) {
-      setErrLogin("Gagal memperbarui!");
+      setErrLogin("email sudah dipakai");
       context.setisLoading(false);
     }
   };
@@ -45,21 +40,12 @@ export default function CangeDataUserForm({ context }: any) {
       <form onSubmit={handleSubmit(onSubmit)}>
         {ErrLogin !== "" && <span>{ErrLogin}</span>}
         <input
-          defaultValue={context.data.name}
-          placeholder="name"
+          placeholder="email"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          {...register("displayName", { required: true })}
+          {...register("email", { required: true })}
         />
         {/* component if error */}
-        <FormErrorLogin error={errors.displayName} />
-        <input
-          defaultValue={context.data.url}
-          placeholder="url"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          {...register("photoURL", { required: true })}
-        />
-        {/* component if error */}
-        <FormErrorLogin error={errors.photoURL} />
+        <FormErrorLogin error={errors.email} />
         <input
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"

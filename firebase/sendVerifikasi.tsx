@@ -1,9 +1,9 @@
 import { getAuth, sendEmailVerification, User } from "firebase/auth";
 
-export default function SendVerifikasi() {
+export default async function SendVerifikasi() {
   const auth = getAuth();
-  sendEmailVerification(auth.currentUser as User).then(() => {
+  await sendEmailVerification(auth.currentUser as User).then(() => {
     // Email verification sent!
-    // ...
+    console.log('hasil')
   });
 }

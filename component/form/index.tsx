@@ -5,6 +5,10 @@ import { loginContext, LoginContext } from "../../context/login";
 import LoginForm from "./login";
 import deleteAccount from "../../firebase/deleteAccount";
 import ChangeDataUser from "./changeDataUser";
+import CangeEmailForm from "./changeEmail";
+import SendEmailVerification from "./sendEmailVerification";
+import ChangePasswordByEmail from "./changePassByEmail";
+import ChangePass from "./changePass";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function FormLogin() {
@@ -23,6 +27,7 @@ export default function FormLogin() {
         <LoginForm context={context}/>
         <h2>signup</h2>
         <SignUpForm context={context}/>
+        <ChangePasswordByEmail/>
       </>
     );
   } else {
@@ -35,6 +40,9 @@ export default function FormLogin() {
         <div>profile : {context.data.url}</div>
         <button className='bg-red-900 text-white' onClick={deleteAccount}>delete account</button>
         <ChangeDataUser context={context}/>
+        <CangeEmailForm context={context}/>
+        <SendEmailVerification context={context}/>
+        <ChangePass/>
       </>
     );
   }

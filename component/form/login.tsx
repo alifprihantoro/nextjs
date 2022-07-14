@@ -22,10 +22,8 @@ export default function LoginForm({context}:any) {
     let { email, password } = e;
     try {
       await SignIn(email, password);
-      context.setisLoading(false)
     } catch (err) {
       setErrLogin("email/password salah");
-      context.setisLoading(false)
     }
   };
   return (

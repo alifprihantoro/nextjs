@@ -29,19 +29,16 @@ export default function SignUpForm({ context }: any) {
     // console.log(email);
     // exec signup
     try {
-      await SignUp(email, password)
-      .then(() => {
-          const displayName = name;
-          // console.log('pengambilan signup--------')
-          // console.log(displayName);
-          const photoURL = url;
-          // console.log(photoURL);
-          UpdateUsrFirebase({ displayName, photoURL });
-        context.setisLoading(false);
+      await SignUp(email, password).then(() => {
+        const displayName = name;
+        // console.log('pengambilan signup--------')
+        // console.log(displayName);
+        const photoURL = url;
+        // console.log(photoURL);
+        UpdateUsrFirebase({ displayName, photoURL });
       });
     } catch (err) {
       setErrLogin("email sudah dipakai");
-      context.setisLoading(false);
     }
   };
   return (

@@ -1,7 +1,7 @@
 import { getAuth, updateEmail, User } from "firebase/auth";
-export default function UpdateEmail(Email:string) {
+export default async function UpdateEmail(Email:string) {
   const auth = getAuth();
-  updateEmail(auth.currentUser as User, Email)
+  await updateEmail(auth.currentUser as User, Email)
     .then(() => {
       // Email updated!
     })

@@ -35,7 +35,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       setisLoading(false);
       return;
     });
-  }, [data]);
+  }, [isLoading]);
+
   if (isLoading) {
     return <>loading...</>;
   }
@@ -51,3 +52,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+

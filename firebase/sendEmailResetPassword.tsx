@@ -1,8 +1,8 @@
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
-export default function SendEmailResetPassword(email: string) {
+export default async function SendEmailResetPassword(email: string) {
   const auth = getAuth();
-  sendPasswordResetEmail(auth, email)
+  await sendPasswordResetEmail(auth, email)
     .then(() => {
       // Password reset email sent!
     })
