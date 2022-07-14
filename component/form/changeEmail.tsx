@@ -5,6 +5,7 @@ import UpdateEmail from "../../firebase/changeEmail";
 
 type Inputs = {
   email: string;
+  currentPassword:string;
 };
 export default function CangeEmailForm({ context }: any) {
   // set error form
@@ -21,11 +22,11 @@ export default function CangeEmailForm({ context }: any) {
     context.setisLoading(true);
     setErrLogin("");
     // get form
-    const { email } = e;
+    const { email,currentPassword } = e;
     // console.log(email);
     // exec signup
     try {
-      await UpdateEmail(email).then(() => {
+      await UpdateEmail(context.data.email,currentPassword,email).then(() => {
         // context.setData({ ...context.data, email });
         context.setisLoading(false);
       });
@@ -39,6 +40,14 @@ export default function CangeEmailForm({ context }: any) {
       <h2>change data</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {ErrLogin !== "" && <span>{ErrLogin}</span>}
+        <input
+          placeholder="currentPassword"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="password"
+          {...register("currentPassword", { required: true, minLength: 8 })}
+        />
+        {/* component if error */}
+        <FormErrorLogin error={errors.currentPassword} />
         <input
           placeholder="email"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
