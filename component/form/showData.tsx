@@ -1,4 +1,4 @@
-export default function ShowData({ setData, user }: any) {
+export default function GetDataFromFirebase({ setData, user }: any) {
   // console.log(user);
   const name = user.displayName;
   const email = user.email;

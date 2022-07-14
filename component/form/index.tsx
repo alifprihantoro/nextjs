@@ -9,6 +9,7 @@ import CangeEmailForm from "./changeEmail";
 import SendEmailVerification from "./sendEmailVerification";
 import ChangePasswordByEmail from "./changePassByEmail";
 import ChangePass from "./changePass";
+import DeleteAccountBtn from "../deleteAccount";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function FormLogin() {
@@ -38,11 +39,11 @@ export default function FormLogin() {
         <div>Nama : {context.data.name}</div>
         <div>Email : {context.data.email}</div>
         <div>profile : {context.data.url}</div>
-        <button className='bg-red-900 text-white' onClick={deleteAccount}>delete account</button>
         <ChangeDataUser context={context}/>
         <CangeEmailForm context={context}/>
         <SendEmailVerification context={context}/>
         <ChangePass context={context}/>
+        <DeleteAccountBtn context={context}/>
       </>
     );
   }

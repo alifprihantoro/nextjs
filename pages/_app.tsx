@@ -5,15 +5,21 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Template from "../component/template";
-import ShowData from "../component/form/showData";
+import GetDataFromFirebase from "../component/form/showData";
 
+// cek apakah ini sudah di eksekusi ( useEffect )
+let isExecute = false;
 function MyApp({ Component, pageProps }: AppProps) {
+  // apakah sudah login
   const [isLogin, setIsLogin] = useState(false);
+  // data collection short profile
   const [data, setData] = useState({
     name: "",
     url: "",
   });
+  // indikasi loading
   const [isLoading, setisLoading] = useState(true);
+  // context
   const loginContext: loginContext = {
     isLogin,
     data,
@@ -23,19 +29,27 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    onAuthStateChanged(getAuth(), (user: any) => {
-      if (user) {
-        setIsLogin(true);
-        // console.log(user.uid);
-        ShowData({ setData, user });
+    // apakah sebelumnya sudah dieksekusi
+    if (!isExecute) {
+      // ubah menjadi true
+      isExecute = true;
+      // mengambil data user short
+      onAuthStateChanged(getAuth(), (user: any) => {
+        // jika user login
+        if (user) {
+          setIsLogin(true);
+          // console.log(user);
+          // update data short
+          GetDataFromFirebase({ setData, user });
+          setisLoading(false);
+          return;
+        }
+        // context.setIsLogin(false);
         setisLoading(false);
         return;
-      }
-      // context.setIsLogin(false);
-      setisLoading(false);
-      return;
-    });
-  }, [isLoading]);
+      });
+    }
+  }, []);
 
   if (isLoading) {
     return <>loading...</>;
@@ -52,4 +66,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
