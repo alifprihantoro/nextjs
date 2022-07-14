@@ -42,7 +42,7 @@ export default function FormLogin() {
         <ChangeDataUser context={context}/>
         <CangeEmailForm context={context}/>
         <SendEmailVerification context={context}/>
-        <ChangePass/>
+        <ChangePass context={context}/>
       </>
     );
   }
