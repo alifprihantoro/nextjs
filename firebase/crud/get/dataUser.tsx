@@ -1,4 +1,4 @@
-import { FirebaseAuth } from './'
+import {FirebaseAuth} from "../.."
 
 const getData = async()=> {
   return FirebaseAuth

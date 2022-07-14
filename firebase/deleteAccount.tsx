@@ -1,6 +1,7 @@
 import { getAuth, deleteUser, User } from "firebase/auth";
-import SignIn from "./login";
-import SignOut from "./logout";
+import FirebaseSignIn from "./auth/signin";
+import FirebaseSignOut from "./auth/signOut";
+
 export default async function DeleteAccount({
   context,
   setErrLogin,
@@ -8,7 +9,7 @@ export default async function DeleteAccount({
 }: any) {
   context.setisLoading(true);
   setErrLogin("");
-  await SignIn(context.data.email, password).then(() => {
+  await FirebaseSignIn(context.data.email, password).then(() => {
     const auth = getAuth();
     const user = auth.currentUser as User;
 
@@ -16,8 +17,8 @@ export default async function DeleteAccount({
       .then(async () => {
         // User deleted.
         console.log("sucses delete");
-        await SignOut();
-        await context.setIsLogin(false)
+        await FirebaseSignOut();
+        await context.setIsLogin(false);
       })
       .catch((err) => {
         // An error ocurred
