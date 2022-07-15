@@ -13,9 +13,7 @@ export default function FormCekPassword(
     const cekPasword = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%;*#?&])(?=.*[A-Z])/.test(
       password
     );
-    ispassword = cekPasword
-      ? ""
-      : "Password setidaknya memiliki satu angka, huruf kecil, symbol dan huruf besar!";
+    ispassword = cekPasword ? "" : "Password setidaknya memiliki satu angka, huruf kecil, symbol dan huruf besar!";
   }
   ispassword !== "" && setErr({ ...err, password: ispassword });
 }

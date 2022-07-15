@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import FormAuth from "../component/form/auth";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
     <>
-      <FormAuth/>
+      <Link href='/auth'><a>Login</a></Link>
       <h1>this is home page</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam magnam ut
