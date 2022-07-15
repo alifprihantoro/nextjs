@@ -5,8 +5,7 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import {  onAuthStateChanged } from "firebase/auth";
 import Template from "../component/template";
-import GetDataFromFirebase from "../component/form/showData";
-import {FirebaseAuth} from "../firebase";
+import {FirebaseAuth} from "../service/firebase";
 
 // cek apakah ini sudah di eksekusi ( useEffect )
 let isExecute = false;
