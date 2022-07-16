@@ -2,6 +2,16 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FirebaseAuth } from "..";
 import UpdateUsrFirebase from "../crud/update/user";
 
+/**
+ * Service Firebase Sign UP
+ *
+ * need :
+ * @extends setErrLogin,
+ * @extends isAuth,
+ * @extends err,
+ * @extends data,
+ * @extends context
+ */
 const FirebaseSignUp = async ({
   setErrLogin,
   isAuth,
@@ -9,6 +19,7 @@ const FirebaseSignUp = async ({
   data,
   context
 }: any) => {
+  // cek if data not empty and error is empty and auth is signup
   if (
     isAuth === "signup" &&
     err.email === "" &&
@@ -20,7 +31,7 @@ const FirebaseSignUp = async ({
     data.currentPasword !== "" &&
     data.nama !== ""
   ) {
-    context.setIsLogin(true)
+    context.setisLoading(true);
     try {
       await createUserWithEmailAndPassword(
         FirebaseAuth,
@@ -29,9 +40,8 @@ const FirebaseSignUp = async ({
       ).then(() => {
         // updateName
         UpdateUsrFirebase({ data });
-        console.log("berhasil");
-      });
     context.setisLoading(false);
+      });
     } catch (err) {
     setErrLogin("email/password salah");
     context.setisLoading(false);

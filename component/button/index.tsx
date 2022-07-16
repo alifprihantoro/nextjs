@@ -1,4 +1,3 @@
-
 interface Button{
   children:JSX.Element | JSX.Element[] | string,
   click:React.MouseEventHandler<HTMLButtonElement>
@@ -13,7 +12,7 @@ interface Button{
  */
 export default function Button({children,click}:Button) {
   return (
-    <button className="bg-blue-900 rounded p-3 " onClick={click}>{children}</button>
+    <button className="bg-blue-900 rounded p-3 text-white" onClick={click}>{children}</button>
   )
 }
 

@@ -3,12 +3,12 @@ import FormAuthEmail from "./email";
 import FormAuthPassword from "./password";
 import FormAuthCurrentPassword from "./currentPassword";
 
+/**
+ * Form and Btn layout form
+ */
 export default function FormAuth({state}:any) {
-  const { isAuth,onClick,setisAuth,btnAuth } = state
+  const { isAuth,onClick } = state
   return (
-    <div className="form-auth block">
-      <span>{isAuth === "signup" ? "sudah punya" : "belum punya"} akun?</span>
-      <button onClick={() => setisAuth(btnAuth())}>{btnAuth()}</button>
       <form className="block">
         {/* nama------- */}
         {isAuth === "signup" && (<FormAuthImportant placeholder="nama" state={state} type="text" />)}
@@ -23,7 +23,5 @@ export default function FormAuth({state}:any) {
           {isAuth}
         </button>
       </form>
-      hello hai
-    </div>
   );
 }
