@@ -1,12 +1,11 @@
 import { updateProfile, User } from "firebase/auth";
-import { FirebaseAuth } from "..";
+import { FirebaseAuth } from "../..";
 
-export default async function UpdateUsrFirebase({
-  displayName,
-  photoURL,
-}: any) {
+export default async function UpdateUsrFirebase({ data }: any) {
+  const { nama } = data;
+  const photoURL = data.photoURL === "" ? "/user.png" : data.photoURL;
   await updateProfile(FirebaseAuth.currentUser as User, {
-    displayName,
+    displayName:nama,
     photoURL,
   })
     .then(() => {
@@ -17,10 +16,4 @@ export default async function UpdateUsrFirebase({
       // An error occurred
       console.log(error);
     });
-  return (
-    <>
-      <h2>update</h2>
-      <button>updateProfile</button>
-    </>
-  );
 }

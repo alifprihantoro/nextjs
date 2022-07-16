@@ -1,4 +1,4 @@
-import SignOut from "../../firebase/logout";
+import SignOut from "../../service/firebase/auth/signOut";
 
 export default function Logout({ context }: any) {
   return (

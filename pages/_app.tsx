@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // indikasi loading
   const [isLoading, setisLoading] = useState(true);
   // context
-  const loginContext = {
+  const loginContext2 = {
     isLogin,
     data,
     setIsLogin,
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (!isExecute) {
       // ubah menjadi true
       isExecute = true;
-      CekIsLogin(loginContext)
+      CekIsLogin(loginContext2)
     }
   }, []);
   if (isLoading) {
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-      <LoginContext.Provider value={loginContext}>
+      <LoginContext.Provider value={loginContext2}>
         <Template>
           <Component {...pageProps} />
         </Template>
