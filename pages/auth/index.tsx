@@ -27,13 +27,12 @@ export default function Auth() {
       context
     });
     // signup firebase
-        console.log(data)
     await FirebaseSignUp({
       setErrLogin,
       isAuth,
       err,
       data,
-      context,
+      context
     });
   };
   const btnAuth = () => {
@@ -53,7 +52,7 @@ export default function Auth() {
   return (
     <>
       {errLogin}
-      <FormAuth state={state} />
+        <FormAuth state={state}/>
     </>
   );
 }

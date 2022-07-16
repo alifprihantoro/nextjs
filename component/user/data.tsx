@@ -1,10 +1,11 @@
+import {loginContext} from "../../context/login";
 import FirebaseSignOut from "../../service/firebase/auth/signOut";
 import Button from "../button";
 
-export default function UserData({context}:any) {
+export default function UserData({context}:{context:loginContext}) {
   return (
       <>
-        <Button click={FirebaseSignOut}>logout</Button>
+        <Button click={()=>FirebaseSignOut({context})}>logout</Button>
         {/* <UpdateUsrFirebase displayName="" photoURL=""/> */}
         <div>Nama : {context.data.name}</div>
         <div>Email : {context.data.email}</div>
