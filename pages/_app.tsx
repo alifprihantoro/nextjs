@@ -23,21 +23,26 @@ function MyApp({ Component, pageProps }: AppProps) {
     isLoading,
   };
 
-  const router = useRouter();
   useEffect(() => {
     // apakah sebelumnya sudah dieksekusi
     if (!isExecute) {
       // ubah menjadi true
       isExecute = true;
       CekIsLogin(loginContext2);
-      if (!isLogin && router.pathname !== "/") {
-        router.push("/");
-      }
     }
-  }, []);
-  if (!isLogin && router.pathname !== "/") {
+  }, [loginContext2]);
+
+  // change this to middleware if can
+  const router = useRouter();
+  const PATH_WHITELIST = ["/", "/auth"];
+  if (!isLogin && !PATH_WHITELIST.includes(router.pathname)) {
+    !isLoading && router.push("/auth");
     return;
-  }
+  }else
+  if (isLogin && router.pathname === '/auth') {
+    router.push("/");
+    return;
+  }else {
   return (
     <LoginContext.Provider value={loginContext2}>
       <Template>
@@ -45,6 +50,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Template>
     </LoginContext.Provider>
   );
+    }
+
 }
 
 export default MyApp;
