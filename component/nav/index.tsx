@@ -1,9 +1,9 @@
 import UserData from "../user/data";
-import NavLink from "./link";
 import { useRouter } from "next/router";
 import LINK from "../link";
-import {useContext} from "react";
-import {loginContext, LoginContext} from "../../context/login";
+import { useContext } from "react";
+import { loginContext, LoginContext } from "../../context/login";
+import Loading from "../loading";
 
 export default function Navigation() {
   const { pathname } = useRouter();
@@ -11,8 +11,9 @@ export default function Navigation() {
   return (
     <nav className="my-8 flex">
       <h1 className="m-3">MurypA</h1>
-      <NavLink />
-      {context.isLogin ? (
+      {context.isLoading ? (
+        <Loading />
+      ) : context.isLogin ? (
         <UserData context={context} />
       ) : pathname === "/" ? (
         <LINK to="/auth">login</LINK>

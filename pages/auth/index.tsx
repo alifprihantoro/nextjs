@@ -8,7 +8,6 @@ import FirebaseSignUp from "../../service/firebase/auth/signup";
 
 export default function Auth() {
   const context = useContext(LoginContext) as loginContext;
-  context.isLogin && router.push("/");
   const [isAuth, setisAuth] = useState("signin");
   const defaultData = {
     email: "",
@@ -58,9 +57,15 @@ export default function Auth() {
   return (
     <>
       {errLogin}
-      <span>{isAuth === "signup" ? "sudah punya" : "belum punya"} akun?</span>
-      <Button click={() => setisAuth(btnAuth())}>{btnAuth()}</Button>
-      <FormAuth state={state} />
+      <div className="block w-full">
+        <div className="w-fit h-fit m-auto p-6 bg-blue-900/50 rounded-xl">
+          <FormAuth state={state} />
+          <span>
+            {isAuth === "signup" ? "sudah punya" : "belum punya"} akun?
+          </span>
+          <Button click={() => setisAuth(btnAuth())}>{btnAuth()}</Button>
+        </div>
+      </div>
     </>
   );
 }

@@ -2,10 +2,11 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Template from "../component/template";
 import CekIsLogin from "../service/firebase/auth/cekIsLogin";
-import {useEffect, useState} from "react";
-import {LoginContext} from "../context/login";
+import { useEffect, useState } from "react";
+import { LoginContext } from "../context/login";
+import { useRouter } from "next/router";
 
-let isExecute:boolean
+let isExecute: boolean;
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLogin, setIsLogin] = useState(false);
   // data collection short profile
@@ -19,26 +20,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     setIsLogin,
     setData,
     setisLoading,
+    isLoading,
   };
 
+  const router = useRouter();
   useEffect(() => {
     // apakah sebelumnya sudah dieksekusi
     if (!isExecute) {
       // ubah menjadi true
       isExecute = true;
-      CekIsLogin(loginContext2)
+      CekIsLogin(loginContext2);
+      if (!isLogin && router.pathname !== "/") {
+        router.push("/");
+      }
     }
   }, []);
-  if (isLoading) {
-    return <>loading...</>
+  if (!isLogin && router.pathname !== "/") {
+    return;
   }
-
   return (
-      <LoginContext.Provider value={loginContext2}>
-        <Template>
-          <Component {...pageProps} />
-        </Template>
-      </LoginContext.Provider>
+    <LoginContext.Provider value={loginContext2}>
+      <Template>
+        <Component {...pageProps} />
+      </Template>
+    </LoginContext.Provider>
   );
 }
 

@@ -14,7 +14,7 @@ interface props{
  */
 export default function LINK({children,to}:props) {
   return (
-   <Link href={to}><a className="bg-blue-900 rounded p-3 leading-9 text-white">{children}</a></Link> 
+   <Link href={to}><a className="bg-blue-900 rounded p-3 h-fit text-white">{children}</a></Link> 
   )
 }
 

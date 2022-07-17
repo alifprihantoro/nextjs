@@ -16,6 +16,7 @@ export interface loginContext {
   setIsLogin: any;
   setData: any;
   setisLoading:any;
+  isLoading:any;
 }
 
 /**

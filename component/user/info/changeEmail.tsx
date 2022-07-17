@@ -57,7 +57,7 @@ export default function ChangeAccountForm() {
         {/* currentPasword------- */}
         <FormAuthCurrentPassword placeholder="password" state={state} />
         {/* submit------- */}
-        <Button click={(e) => click(e)}>DeleteAccount</Button>
+        <Button click={(e) => click(e)}>Change Email</Button>
       </form>
     </>
   );

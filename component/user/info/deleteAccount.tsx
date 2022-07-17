@@ -18,10 +18,6 @@ export default function DeleteAccountForm() {
   const [err, setErr] = useState(defaultData);
   const [data, setData] = useState(defaultData);
   // jika belum login
-  if (!context.isLogin) {
-  router.push("/");
-  return <></>
-  }
   const click = async (e: any) => {
     context.setisLoading(true);
     // cek err and data
