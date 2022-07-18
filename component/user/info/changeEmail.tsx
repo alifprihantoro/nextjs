@@ -1,4 +1,3 @@
-import router from "next/router";
 import { useContext, useState } from "react";
 import { loginContext, LoginContext } from "../../../context/login";
 import Button from "../../button";
@@ -24,7 +23,7 @@ export default function ChangeAccountForm() {
     if (err.password === "" && data.currentPasword !== "") {
       try {
         // delete account
-        await UpdateEmail(context.data.email,data.password,data.email);
+        await UpdateEmail(context.data.email,data.password,data.email).then(()=>context.setData({...context.data,email:data.email}));
       } catch (error) {
         // An error ocurred
         console.log(error);
@@ -32,6 +31,8 @@ export default function ChangeAccountForm() {
       }
     context.setisLoading(false);
     }
+    console.log(context.data)
+    console.log(data.email)
     e.preventDefault();
   };
   // define usestate
@@ -44,13 +45,13 @@ export default function ChangeAccountForm() {
   return (
     <>
       <h2>change Email</h2>
-      <form className="block">
+      <form onSubmit={(e)=>click(e)} className="block">
         {/* email------- */}
         <FormAuthEmail placeholder="email" state={state} />
         {/* pasword------- */}
-        <FormAuthPassword placeholder="password" state={state} />
+        <FormAuthPassword placeholder="current password" state={state} nama='password'/>
         {/* currentPasword------- */}
-        <FormAuthCurrentPassword placeholder="password" state={state} />
+        <FormAuthCurrentPassword placeholder="current password again" state={state} nama='password'/>
         {/* submit------- */}
         <Button click={(e) => click(e)}>Change Email</Button>
       </form>

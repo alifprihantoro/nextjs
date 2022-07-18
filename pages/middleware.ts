@@ -1,12 +1,18 @@
-import type { NextRequest } from 'next/server'
+// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/auth')) {
-    console.log('ai')
-    // This logic is only applied to /about
-  }
+// If the incoming request has the "beta" cookie
+// then we'll rewrite the request to /beta
+export function middleware(req: NextRequest) {
 
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    // This logic is only applied to /dashboard
-  }
+  const isInBeta = JSON.parse(req.cookies.get('beta') || 'false');
+  console.log('middleware')
+  console.log(isInBeta)
+  req.nextUrl.pathname = isInBeta ? '/beta' : '/';
+  return NextResponse.rewrite(req.nextUrl);
 }
+
+// Supports both a single value or an array of matches
+export const config = {
+  matcher: '/',
+};

@@ -10,9 +10,6 @@ const FirebaseSignIn = async(email:string, password:string,setErrLogin:any,{isAu
     }
   }
   else{
-  setErrLogin("");
-  context.setisLoading(false);
-  setErrLogin("Mohon diperiksa kembali");
   context.setisLoading(false);
   }
 }

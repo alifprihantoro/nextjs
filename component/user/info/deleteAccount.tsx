@@ -7,12 +7,12 @@ import FormAuthCurrentPassword from "../../form/auth/currentPassword";
 import FormAuthPassword from "../../form/auth/password";
 
 const defaultData = {
-    email: "",
-    password: "",
-    nama: "",
-    currentPasword: "",
-    delete: "",
-  };
+  email: "",
+  password: "",
+  nama: "",
+  currentPasword: "",
+  delete: "",
+};
 export default function DeleteAccountForm() {
   const context = useContext(LoginContext) as loginContext;
   const [err, setErr] = useState(defaultData);
@@ -23,8 +23,12 @@ export default function DeleteAccountForm() {
     // cek err and data
     if (err.password === "" && data.currentPasword !== "") {
       try {
-      // delete account
-        await DeleteAccountFirebase({context,setErr,password: data.password,});
+        // delete account
+        await DeleteAccountFirebase({
+          context,
+          setErr,
+          password: data.password,
+        });
       } catch (error) {
         // An error ocurred
         console.log(error);
@@ -41,13 +45,16 @@ export default function DeleteAccountForm() {
     setData,
   };
   return (
-    <form className="block">
-      {/* pasword------- */}
-      <FormAuthPassword placeholder="password" state={state} />
-      {/* currentPasword------- */}
-      <FormAuthCurrentPassword placeholder="password" state={state} />
-      {/* submit------- */}
-      <Button click={(e) => click(e)}>DeleteAccount</Button>
-    </form>
+    <>
+      <h2>delete account</h2>
+      <form className="block">
+        {/* pasword------- */}
+        <FormAuthPassword placeholder="password" state={state} nama='password'/>
+        {/* currentPasword------- */}
+        <FormAuthCurrentPassword placeholder="current password again" state={state} nama='password'/>
+        {/* submit------- */}
+        <Button click={(e) => click(e)}>DeleteAccount</Button>
+      </form>
+    </>
   );
 }

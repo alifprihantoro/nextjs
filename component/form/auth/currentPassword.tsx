@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FormCekCurrentPassword from "../../../service/formCek/currentPasword";
 
-export default function FormAuthCurrentPassword({ placeholder, state }: any) {
+export default function FormAuthCurrentPassword({ placeholder, state, nama}: any) {
   const [isPassCheck, setIsPassCheck] = useState("password");
   return (
     <>
@@ -9,7 +9,7 @@ export default function FormAuthCurrentPassword({ placeholder, state }: any) {
         placeholder={placeholder}
         onChange={(e) =>{
           const val =  e.target.value
-          const cek = FormCekCurrentPassword(state.data.password,val) 
+          const cek = FormCekCurrentPassword(state.data[nama],val) 
           const Tescek = cek?'':'Password Tidak Sama'
           // set err
           state.setErr({...state.err,currentPasword:Tescek})
@@ -21,16 +21,12 @@ export default function FormAuthCurrentPassword({ placeholder, state }: any) {
         type={isPassCheck}
       />
       <input
-        id="passChecked2"
         onChange={() => {
           const result = isPassCheck === "password" ? "text" : "password";
           setIsPassCheck(result);
         }}
         type="checkbox"
       />
-      <label htmlFor="passChecked2">
-        {isPassCheck === "password" ? "show password" : "hide password"}
-      </label>
       <span>{state.err.currentPasword}</span>
     </>
   );

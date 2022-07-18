@@ -15,9 +15,9 @@ export default function FormAuth({state}:any) {
         {/* email------- */}
         <FormAuthEmail placeholder="email" state={state} />
         {/* pasword------- */}
-        <FormAuthPassword placeholder="password" state={state} />
+        <FormAuthPassword placeholder="password" state={state} nama='password'/>
         {/* currentPasword------- */}
-        {isAuth === "signup" && (<FormAuthCurrentPassword placeholder="password" state={state} />)}
+        {isAuth === "signup" && (<FormAuthCurrentPassword placeholder="password again" state={state} nama='password'/>)}
         {/* submit------- */}
         <button onClick={onClick} type="submit">
           {isAuth}

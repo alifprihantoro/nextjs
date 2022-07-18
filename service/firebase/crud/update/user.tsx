@@ -1,19 +1,18 @@
 import { updateProfile, User } from "firebase/auth";
 import { FirebaseAuth } from "../..";
+import CekIsLogin from "../../auth/cekIsLogin";
 
-export default async function UpdateUsrFirebase({ data }: any) {
+export default async function UpdateUsrFirebase({ data, context }: any) {
   const { nama } = data;
-  const photoURL = data.photoURL === "" ? "/user.png" : data.photoURL;
   await updateProfile(FirebaseAuth.currentUser as User, {
-    displayName:nama,
-    photoURL,
+    displayName: nama,
   })
     .then(() => {
       // Profile updated!
-      // console.log("berhasil!!!!!!!!!!!!!!!");
+      CekIsLogin(context);
     })
-    .catch((error) => {
+    .catch(() => {
       // An error occurred
-      console.log(error);
+      alert("gagal update data");
     });
 }

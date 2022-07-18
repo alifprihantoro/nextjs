@@ -1,9 +1,10 @@
 export default function FormCekPassword(
   password: string,
-  { setErr, setData, err, data }: any
+  { setErr, setData, err, data }: any,
+  nama: string
 ) {
-  setErr({ ...err, password: "" });
-  setData({ ...data, password });
+  setErr({ ...err, [nama]: "" });
+  setData({ ...data, [nama]: password });
   let ispassword;
   if (password === "") {
     ispassword = "Password harus diisi";
@@ -13,7 +14,9 @@ export default function FormCekPassword(
     const cekPasword = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%;*#?&])(?=.*[A-Z])/.test(
       password
     );
-    ispassword = cekPasword ? "" : "Password setidaknya memiliki satu angka, huruf kecil, symbol dan huruf besar!";
+    ispassword = cekPasword
+      ? ""
+      : "Password setidaknya memiliki satu angka, huruf kecil, symbol dan huruf besar!";
   }
-  ispassword !== "" && setErr({ ...err, password: ispassword });
+  ispassword !== "" && setErr({ ...err, [nama]: ispassword });
 }

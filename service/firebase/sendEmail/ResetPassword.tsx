@@ -2,14 +2,12 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 export default async function SendEmailResetPassword(email: string) {
   const auth = getAuth();
-  await sendPasswordResetEmail(auth, email)
-    .then(() => {
+  try {
+    await sendPasswordResetEmail(auth, email).then(() => {
       // Password reset email sent!
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      alert("email berhasil dikirim, jika tidak ada, maka cek di spam");
     });
+  } catch (err) {
+    alert("email gagal dikirim!\nmohon periksa kembali!");
+  }
 }

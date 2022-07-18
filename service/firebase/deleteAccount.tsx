@@ -1,10 +1,8 @@
 import {
-  getAuth,
   deleteUser,
   User,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import router from "next/router";
 import { FirebaseAuth } from ".";
 import FirebaseSignOut from "./auth/signOut";
 
@@ -26,7 +24,6 @@ export default async function DeleteAccountFirebase({
         // User deleted.
         await FirebaseSignOut({ context });
         await context.setIsLogin(false);
-        router.push("/");
       });
     });
   } catch (error) {
