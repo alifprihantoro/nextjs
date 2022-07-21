@@ -12,6 +12,8 @@ export default function FormAuth({state}:any) {
       <form className="block">
         {/* nama------- */}
         {isAuth === "signup" && (<FormAuthImportant placeholder="nama" state={state} type="text" />)}
+        {/* username------- */}
+        {isAuth === "signup" && (<FormAuthImportant placeholder="@username" state={state} type="text" />)}
         {/* email------- */}
         <FormAuthEmail placeholder="email" state={state} />
         {/* pasword------- */}

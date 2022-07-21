@@ -9,6 +9,7 @@ export default function CekIsLogin({ setisLoading, setIsLogin, setData }: any) {
       // jika user login
       if (user) {
         setIsLogin(true);
+        console.log(user)
         // update data short
         GetDataFromFirebase({ setData, user });
         setisLoading(false);

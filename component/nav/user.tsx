@@ -3,13 +3,14 @@ import FirebaseSignOut from "../../service/firebase/auth/signOut";
 import Button from "../button";
 import IMG from "../img";
 import NavLink from "../nav/link";
+import ProfileImg from "../user/info/profile";
 
 export default function UserData({context}:{context:loginContext}) {
   return (
       <>
         {/* <UpdateUsrFirebase displayName="" photoURL=""/> */}
         <div className="">
-          <IMG url={context.data.url}/>
+      <ProfileImg url={context.data.url} />
         <div>Nama : {context.data.name}</div>
         <div>Email : {context.data.email}</div>
         </div>

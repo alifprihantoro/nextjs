@@ -13,6 +13,6 @@ export default function SendVerifikasiBtn() {
     <Button click={klick}>Send me Email!</Button>
   )
   }else{
-    return
+    return <></>
   }
 }

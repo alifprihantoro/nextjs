@@ -1,9 +1,9 @@
-import UserData from "../user/data";
 import { useRouter } from "next/router";
 import LINK from "../link";
 import { useContext } from "react";
 import { loginContext, LoginContext } from "../../context/login";
 import Loading from "../loading";
+import UserData from "./user";
 
 export default function Navigation() {
   const { pathname } = useRouter();

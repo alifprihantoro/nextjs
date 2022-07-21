@@ -1,7 +1,7 @@
 import FormCekImportant from "../../../service/formCek/important";
 
 export default function FormAuthImportant({placeholder,state,type}:any) {
-  const nama = placeholder.replace()
+  const nama = placeholder.replace(/[\s]|[@]/gm,'')
   return (
     <>
         <input

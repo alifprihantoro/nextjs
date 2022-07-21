@@ -1,6 +1,10 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { FirebaseAuth } from "..";
 import UpdateUsrFirebase from "../crud/update/user";
+import UpdateUserNameFireStore from "../crud/update/username";
 
 /**
  * Service Firebase Sign UP
@@ -16,13 +20,15 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
   if (
     isAuth === "signup" &&
     err.email === "" &&
+    err.username === "" &&
     err.password === "" &&
     err.currentPasword === "" &&
     err.nama === "" &&
     data.password !== "" &&
     data.email !== "" &&
     data.currentPasword !== "" &&
-    data.nama !== ""
+    data.nama !== "" &&
+    data.username !== ""
   ) {
     context.setisLoading(true);
     try {
@@ -31,15 +37,18 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
         data.email,
         data.password
       ).then(() => {
-        // updateName
-        UpdateUsrFirebase({ data,context });
+        // update Name and username
+        UpdateUsrFirebase({ data, context });
+        console.log(data.username)
+        UpdateUserNameFireStore(context,data.username)
         context.setisLoading(false);
       });
     } catch (err) {
-      alert("email/password salah");
+      alert("email sudah digunakan");
       context.setisLoading(false);
     }
   } else {
+      alert("apa ini");
     context.setisLoading(false);
   }
 };
