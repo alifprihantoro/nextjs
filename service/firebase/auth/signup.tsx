@@ -1,10 +1,6 @@
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FirebaseAuth } from "..";
 import UpdateUsrFirebase from "../crud/update/user";
-import UpdateUserNameFireStore from "../crud/update/username";
 
 /**
  * Service Firebase Sign UP
@@ -39,8 +35,7 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
       ).then(() => {
         // update Name and username
         UpdateUsrFirebase({ data, context });
-        console.log(data.username)
-        UpdateUserNameFireStore(context,data.username)
+        context.setData({...context.data,signup:true,username:data.username})
         context.setisLoading(false);
       });
     } catch (err) {
@@ -48,7 +43,7 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
       context.setisLoading(false);
     }
   } else {
-      alert("apa ini");
+    alert("apa ini");
     context.setisLoading(false);
   }
 };

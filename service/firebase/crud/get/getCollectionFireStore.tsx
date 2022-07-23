@@ -18,6 +18,6 @@ export default async function getCollectionFireStore(collection: string) {
       return "no such document";
     }
   } catch (error) {
-    return error;
+    return "connection error";
   }
 }

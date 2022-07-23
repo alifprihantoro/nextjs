@@ -1,14 +1,16 @@
+/**
+ * cek if not empty
+ *
+ * need :
+ * @param val : value cek
+ * @param state : get err and data state
+ * @param name : name form for err and data
+ */
 export default function FormCekImportant(
   val: string,
   { setErr, setData, err, data }: any,
   name: string
 ) {
-  // let obj = {} as any
-  // if (val === "") {
-  //   obj[name] = "mohon untuk diisi";
-  // } else {
-  //   obj[name] = "";
-  // }
   const errName = val === "" ? "mohon untuk diisi" : "";
   setErr({ ...err, [name]: errName });
   // let obj2 = {} as any

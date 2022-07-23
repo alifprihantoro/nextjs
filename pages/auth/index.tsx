@@ -16,6 +16,7 @@ export default function Auth() {
     password: "",
     nama: "",
     currentPasword: "",
+    username:''
   };
   const [err, setErr] = useState(defaultData);
   const [data, setData] = useState(defaultData);
