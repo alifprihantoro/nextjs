@@ -34,5 +34,37 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## personal note
-### Auth
--`pages/auth/index.tsx` is for form, state and onclick for signup and signin
+
+### .env.local
+
+> paste your code from firebase
+
+```
+NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+```
+
+### Pages
+
+- `auth` : pages for signin, and signup
+- `usr` :
+  - `info` : info privite/change info
+  - [id] : show public info usr by uid
+- `home` : show my article
+
+### Component
+
+`this for component (return react html)`
+
+### context
+
+`this for context (for react context)`
+
+### service
+
+`this script not return react html`
