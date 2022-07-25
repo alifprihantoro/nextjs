@@ -1,12 +1,11 @@
 import router from "next/router";
 import { useContext, useState } from "react";
 import Button from "../../component/button";
-import FormAuth from "../../component/form/auth";
+import FormAuth from "../../component/form/usr";
 import Loading from "../../component/loading";
 import { loginContext, LoginContext } from "../../context/login";
 import FirebaseSignIn from "../../service/firebase/auth/signin";
 import FirebaseSignUp from "../../service/firebase/auth/signup";
-import UpdateUserNameFireStore from "../../service/firebase/crud/update/username";
 
 export default function Auth() {
   const context = useContext(LoginContext) as loginContext;
