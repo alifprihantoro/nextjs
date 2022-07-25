@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import Link from "next/link";
+import FirebaseCreate from "../service/firebase/crud/create";
 
 const Home: NextPage = () => {
   return (
@@ -10,6 +10,14 @@ const Home: NextPage = () => {
         alias eos sapiente enim optio excepturi, molestiae placeat mollitia eum
         dignissimos, quae accusamus qui? Alias possimus saepe at vitae.
       </p>
+      <button
+        className="bg-blue-900 p-3 text-white"
+        onClick={() => {
+          FirebaseCreate();
+        }}
+      >
+        tes
+      </button>
     </>
   );
 };
