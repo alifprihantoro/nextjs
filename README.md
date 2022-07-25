@@ -56,6 +56,7 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
   - `info` : info privite/change info
   - [id] : show public info usr by uid
 - `home` : show my article
+- `edit` : edit detail my article
 
 ### Component
 

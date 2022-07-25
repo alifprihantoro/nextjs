@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { loginContext, LoginContext } from "../../../context/login";
 import Button from "../../button";
-import FormAuthCurrentPassword from "../../form/auth/currentPassword";
-import FormAuthPassword from "../../form/auth/password";
+import FormAuthCurrentPassword from "../../form/usr/currentPassword";
+import FormAuthPassword from "../../form/usr/password";
 import FirebaseUpdatePassword from "../../../service/firebase/crud/update/password";
 
 const defaultData = {

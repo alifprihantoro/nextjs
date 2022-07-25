@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { loginContext, LoginContext } from "../../../context/login";
 import Button from "../../button";
-import FormAuthCurrentPassword from "../../form/auth/currentPassword";
-import FormAuthEmail from "../../form/auth/email";
-import FormAuthPassword from "../../form/auth/password";
+import FormAuthCurrentPassword from "../../form/usr/currentPassword";
+import FormAuthEmail from "../../form/usr/email";
+import FormAuthPassword from "../../form/usr/password";
 import UpdateEmail from '../../../service/firebase/crud/update/email'
 
 const defaultData = {
