@@ -16,15 +16,13 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
   if (
     isAuth === "signup" &&
     err.email === "" &&
-    err.username === "" &&
     err.password === "" &&
     err.currentPasword === "" &&
     err.nama === "" &&
     data.password !== "" &&
     data.email !== "" &&
     data.currentPasword !== "" &&
-    data.nama !== "" &&
-    data.username !== ""
+    data.nama !== ""
   ) {
     context.setisLoading(true);
     try {
@@ -35,15 +33,15 @@ const FirebaseSignUp = async ({ isAuth, err, data, context }: any) => {
       ).then(() => {
         // update Name and username
         UpdateUsrFirebase({ data, context });
-        context.setData({...context.data,signup:true,username:data.username})
+        context.setData({...context.data,signup:true})
         context.setisLoading(false);
+        alert("selamat datang"+data.nama);
       });
     } catch (err) {
       alert("email sudah digunakan");
       context.setisLoading(false);
     }
   } else {
-    alert("apa ini");
     context.setisLoading(false);
   }
 };

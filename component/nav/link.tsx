@@ -5,7 +5,6 @@ export default function NavLink() {
     <>
       <LINK to="/">Home</LINK>
       <LINK to="/usr/info">user</LINK>
-      <LINK to="/">post</LINK>
     </>
   );
 }

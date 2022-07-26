@@ -1,4 +1,4 @@
-import FormAuthImportant from "./important";
+import FormAuthImportant from "../important";
 import FormAuthEmail from "./email";
 import FormAuthPassword from "./password";
 import FormAuthCurrentPassword from "./currentPassword";

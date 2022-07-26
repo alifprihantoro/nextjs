@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import getCollectionFireStore from "../../../service/firebase/crud/get/getCollectionFireStore";
+import FormUsrInfoDetail from "../../form/usr/info";
 import ProfileImg from "./profile";
 
 let execute = false;
 export default function UserDetailPrivate({ context }: any) {
-  const [bio, setBio] = useState("");
-  const [web, setWeb] = useState("");
+  const [data, setData] = useState({ nama: "", tlp: "", bio: "", web: "" });
+  const [err, setErr] = useState({ nama: "", tlp: "", bio: "", web: "" });
   // get collection
   const getDb = async () => {
     // get collection
-    const get = (await getCollectionFireStore(
+    await getCollectionFireStore(
       `usr/${context.data.uid}`
-    )) as any;
-    // set collection
-    setBio(get.info?.bio);
-    setWeb(get.info?.web);
+    ).then(e=>{
+    setData(e as any);
+    console.log(e)
+    })
+  };
+  const state = {
+    data,
+    setData,
+    err,
+    setErr,
   };
 
   useEffect(() => {
@@ -26,10 +33,7 @@ export default function UserDetailPrivate({ context }: any) {
   return (
     <>
       <ProfileImg url={context.data.url} />
-      <div>Nama : {context.data.name}</div>
-      <div>Telephone : {context.data.phoneNumber || "no data"}</div>
-      <div>Bio : {bio || "no data"}</div>
-      <div>Web : {web || "no data"}</div>
+      <FormUsrInfoDetail state={state} />
     </>
   );
 }
