@@ -8,7 +8,7 @@ const FirebaseSignOut = async ({ context }: any) => {
     context.setIsLogin(false);
     context.setisLoading(false);
   } catch (err) {
-    console.log(err);
+    alert('gagal login')
   }
 };
 export default FirebaseSignOut;

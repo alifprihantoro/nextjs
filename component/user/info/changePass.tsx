@@ -29,13 +29,10 @@ export default function ChangeAccountPassword() {
         )
       } catch (error) {
         // An error ocurred
-        console.log(error);
         alert('delete gagal')
       }
       context.setisLoading(false);
     }
-    console.log(context.data);
-    console.log(data.email);
     e.preventDefault();
   };
   // define usestate

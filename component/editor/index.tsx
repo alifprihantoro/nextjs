@@ -1,27 +1,48 @@
-// import RichEditor from "rich-markdown-editor";
-import React, { useEffect, useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+import {useState} from "react";
 
-export default function MyEditor() {
-   const [editorState, setEditorState] = useState('');
+// clien render
+const QuillNoSSRWrapper = dynamic(import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
+
+// modules
+const modules = {
+  toolbar: [
+    [{ header: ["1", "2", "3"] }],
+    [{ font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image", "video"],
+    ["clean"],
+    ["code"],
+    ["script"],
+    ["code-block"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+};
+
+export default function MyEditor({content,setContent}:any) {
   return (
-    <div>
-      <h1>React Editors</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <div style={{ border: "1px solid black", padding: '2px', minHeight: '400px' }}>
-        <Editor
-          onEditorStateChange={(e)=> console.log(e)}
-        />
-      </div>
-    </div>
+    <>
+      <QuillNoSSRWrapper
+        className=""
+        modules={modules}
+        defaultValue={content}
+        theme="snow"
+        onChange={setContent}
+      />
+    </>
   );
 }
-
-  /*   <RichEditor
-    *     id="My-Editor"
-    * defaultValue="Hello world!"
-    *     readOnly={false}
-    *     onChange={e=>tes(e)}
-    *   /> */

@@ -30,7 +30,6 @@ export default function DeleteAccountForm() {
         });
       } catch (error) {
         // An error ocurred
-        console.log(error);
         setErr({ ...err, delete: "delete gagal" });
       }
     }

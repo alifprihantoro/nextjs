@@ -27,6 +27,6 @@ export default async function DeleteAccountFirebase({
       });
     });
   } catch (error) {
-    console.log(error);
+    alert('gagal logout!')
   }
 }

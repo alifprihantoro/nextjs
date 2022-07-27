@@ -14,7 +14,6 @@ export default function UserDetailPrivate({ context }: any) {
       `usr/${context.data.uid}`
     ).then(e=>{
     setData(e as any);
-    console.log(e)
     })
   };
   const state = {

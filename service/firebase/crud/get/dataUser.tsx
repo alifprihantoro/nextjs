@@ -1,5 +1,4 @@
 export default function GetDataFromFirebase({ setData, user }: any) {
-  // console.log(user);
   const name = user.displayName;
   const email = user.email;
   const url = user.photoURL;

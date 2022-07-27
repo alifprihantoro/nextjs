@@ -1,80 +1,55 @@
-import Editor from "rich-markdown-editor";
+import { doc, setDoc } from "firebase/firestore";
+import { useState } from "react";
+import Button from "../../component/button";
+import MyEditor from "../../component/editor";
+import EditorInfoPost from "../../component/editor/info";
+import { FirebaseFireStore } from "../../service/firebase";
+import getCollectionFireStore from "../../service/firebase/crud/get/getCollectionFireStore";
 
 export default function EditNew() {
+  const default_data = {
+    judul: "",
+    link: "",
+    tag: "",
+    description: "",
+    user: "",
+  };
+  const [content, setContent] = useState("");
+  const [data, setData] = useState(default_data);
+  const [err, setErr] = useState(default_data);
+  const state = {
+    data,
+    setData,
+    err,
+    setErr,
+  };
+  const strToArr = (name:string)=> {
+      name.split(",");
+      return name.replace(/\s/gm, "");
+  }
+  // if save
+  const click = async (e: any) => {
+    e.preventDefault();
+    try {
+      let { judul, link, description, tag, user } = data;
+      user = strToArr(user)
+      tag = strToArr(tag)
+      const cityRef = doc(FirebaseFireStore, "usr", link);
+      await setDoc(
+        cityRef,
+        { judul, link, description, tag, user, content },
+        { merge: true }
+      );
+      alert("berhasil!");
+    } catch (error) {
+      alert("gagal update data!");
+    }
+  };
   return (
-    <Editor
-  defaultValue="Hello world!"
-/>
-  )
+    <>
+      <Button click={(e) => click(e)}>save</Button>
+      <EditorInfoPost state={state} />
+      <MyEditor content={content} setContent={setContent} />
+    </>
+  );
 }
-
-
-// import dynamic from "next/dynamic";
-// import "highlight.js/styles/github.css";
-// import "highlight.js";
-// import "react-quill/dist/quill.snow.css";
-//
-// const QuillNoSSRWrapper = dynamic(import("react-quill"), {
-//   ssr: false,
-//   loading: () => <p>Loading ...</p>,
-// });
-//
-// const modules = {
-//   toolbar: [
-//     [{ header: ["1", "2", "3"] }],
-//     [{ font: [] }],
-//     [{ size: [] }],
-//     ["bold", "italic", "underline", "strike", "blockquote"],
-//     [
-//       { list: "ordered" },
-//       { list: "bullet" },
-//       { indent: "-1" },
-//       { indent: "+1" },
-//     ],
-//     ["link", "image", "video"],
-//     ["clean"],
-//     ["code"],
-//     ["script"],
-//     ["code-block"],
-//   ],
-//   clipboard: {
-//     // toggle to add extra line breaks when pasting HTML:
-//     matchVisual: true,
-//   },
-// };
-// /*
-//  * Quill editor formats
-//  * See https://quilljs.com/docs/formats/
-//  */
-// const formats = [
-//   "header",
-//   "font",
-//   "size",
-//   "bold",
-//   "code",
-//   "code-block",
-//   "script",
-//   "italic",
-//   "underline",
-//   "strike",
-//   "blockquote",
-//   "list",
-//   "bullet",
-//   "indent",
-//   "link",
-//   "image",
-//   "video",
-// ];
-//
-// export default function EditNew() {
-//   return (
-//     <>
-//       <QuillNoSSRWrapper
-//         modules={modules}
-//         formats={formats}
-//         theme="snow"
-//         onChange={(e) => console.log(e)}
-//       />
-//     </>
-//   );
-// }

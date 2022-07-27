@@ -2,7 +2,6 @@ import {doc, setDoc} from "firebase/firestore";
 import {useContext, useEffect} from "react";
 import {loginContext, LoginContext} from "../../../context/login";
 import {FirebaseFireStore} from "../../../service/firebase";
-import getCollectionFireStore from "../../../service/firebase/crud/get/getCollectionFireStore";
 import FormAuthImportant from "../important";
 import FormAuthNormal from "../normal";
 
@@ -21,7 +20,6 @@ export default function FormUsrInfoDetail({state}:any) {
     await setDoc(cityRef, { nama, tlp, bio, web }, { merge: true });
     alert('berhasil!')
     } catch (error) {
-      console.log(error)
       alert('gagal update data!')
     }
   }

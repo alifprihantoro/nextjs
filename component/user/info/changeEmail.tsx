@@ -26,13 +26,10 @@ export default function ChangeAccountForm() {
         await UpdateEmail(context.data.email,data.password,data.email).then(()=>context.setData({...context.data,email:data.email}));
       } catch (error) {
         // An error ocurred
-        console.log(error);
         setErr({ ...err, delete: "delete gagal" });
       }
     context.setisLoading(false);
     }
-    console.log(context.data)
-    console.log(data.email)
     e.preventDefault();
   };
   // define usestate
