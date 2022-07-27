@@ -7,11 +7,15 @@ export default function EditorInfoPost({state}:any) {
       {/* Judul------- */}
       <label htmlFor="judul">Judul : </label>
       <FormAuthNormal placeholder="judul" state={state} type="text" defaultVal={data.judul} />
+      <div>
+      <label htmlFor="public">Public : </label>
+        <input type="checkbox" id="public" onChange={e=>state.setData({...data,Public:e.target.checked})}/>
+      </div>
       {/* Link------- */}
       <label htmlFor="link">Link : </label>
       <FormAuthNormal placeholder="link" state={state} type="text" defaultVal={data.link} />
       {/* tag------- */}
-      <blockquote className="bg-blue-200 rounded p-3 text-blue-900">pisahkan dengan koma</blockquote>
+      <blockquote className="bg-blue-200 rounded p-3 text-blue-900">tag dan username : pisahkan dengan koma</blockquote>
       <label htmlFor="tag">Tag : </label>
       <FormAuthNormal placeholder="tag" state={state} type="text" defaultVal={data.tag} />
       {/* user------- */}
