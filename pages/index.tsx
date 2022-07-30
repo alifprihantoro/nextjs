@@ -1,6 +1,12 @@
 import type { NextPage } from "next";
+import dynamic from "next/dynamic";
+// import TesEditor from "../component/editor/tes";
 import FirebaseCreate from "../service/firebase/crud/create";
 
+const EditorStac = dynamic(import("../component/editor/tes"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
 const Home: NextPage = () => {
   return (
     <>
@@ -18,6 +24,8 @@ const Home: NextPage = () => {
       >
         tes
       </button>
+      <EditorStac/>
+      {/* <TesEditor/> */}
     </>
   );
 };

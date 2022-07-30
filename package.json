@@ -11,6 +11,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-markdown-gfm": "^34.2.0",
     "@ckeditor/ckeditor5-react": "^5.0.2",
+    "@stackoverflow/stacks-editor": "^0.7.0",
     "@types/ckeditor__ckeditor5-core": "^33.0.3",
     "@types/react-draft-wysiwyg": "^1.13.4",
     "@types/turndown": "^5.0.1",
