@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import TesBtn from "../component/button/tes";
 import dynamic from "next/dynamic";
 // import TesEditor from "../component/editor/tes";
 import FirebaseCreate from "../service/firebase/crud/create";
@@ -16,14 +17,15 @@ const Home: NextPage = () => {
         alias eos sapiente enim optio excepturi, molestiae placeat mollitia eum
         dignissimos, quae accusamus qui? Alias possimus saepe at vitae.
       </p>
-      <button
-        className="bg-blue-900 p-3 text-white"
-        onClick={() => {
-          FirebaseCreate();
-        }}
-      >
-        tes
-      </button>
+      {/* <button
+        *   className="bg-blue-900 p-3 text-white"
+        *   onClick={() => {
+        *     FirebaseCreate();
+        *   }}
+        * >
+        *   tes
+        * </button> */}
+      {/* <TesBtn/> */}
       <EditorStac/>
       {/* <TesEditor/> */}
     </>
