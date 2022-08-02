@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import TesBtn from "../component/button/tes";
 import dynamic from "next/dynamic";
 // import TesEditor from "../component/editor/tes";
-import FirebaseCreate from "../service/firebase/crud/create";
 
-const EditorStac = dynamic(import("../component/editor/tes"), {
+const EditorStac = dynamic(import("../component/editor/muryp"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 });
