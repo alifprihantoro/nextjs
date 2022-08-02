@@ -16,3 +16,5 @@ export const toolbar_single2 = [
   { pasang: ">", nama: "quotes" },
   { pasang: "-", nama: "Unordered List" },
 ];
+
+export const type_el_single = toolbar_single.concat(toolbar_single2);

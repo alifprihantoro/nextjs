@@ -11,6 +11,7 @@ export default function BtnToolbar({ toolbar, btnToolbar }: prop) {
           <input
             className="bg-blue-900 p-3 m-3 rounded text-white"
             key={i}
+            id={e.nama+'-btn'}
             type="button"
             onClick={() => btnToolbar(e.pasang, e.nama)}
             value={e.nama}
