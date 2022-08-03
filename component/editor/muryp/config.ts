@@ -1,7 +1,7 @@
 export const toolbar_couple = [
   { pasang: "**", nama: "bold" },
   { pasang: "*", nama: "italic" },
-  { pasang: "_", nama: "undescore" },
+  { pasang: "_", nama: "under line" },
   { pasang: "`", nama: "code line" },
   { pasang: "```", nama: "code block" },
 ];
