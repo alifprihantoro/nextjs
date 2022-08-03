@@ -4,4 +4,5 @@
 export interface select {
   nama: string;
   cek: boolean;
+  command: string;
 }

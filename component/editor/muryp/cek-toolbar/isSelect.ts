@@ -18,9 +18,10 @@ export default function isSelect(getCursor: typesgetCursor): select[] {
           return {
             nama: e.nama,
             cek: false,
+            command: e.pasang,
           };
         })
-      : [{ nama: "", cek: false }];
+      : [{ nama: "", cek: false,command:'' }];
   // cek is single el
   const single_el = type_el_single.map((e) => {
     // regex
@@ -34,6 +35,7 @@ export default function isSelect(getCursor: typesgetCursor): select[] {
     return {
       nama: e.nama,
       cek: checker(cek),
+      command: e.pasang,
     };
   });
   const result = single_el.concat(couple_el);

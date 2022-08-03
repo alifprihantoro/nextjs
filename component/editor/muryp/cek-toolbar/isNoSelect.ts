@@ -14,6 +14,7 @@ export default function isNoSelect(getCursor: typesgetCursor):select[] {
     return {
       nama: e.nama,
       cek: isHas > 0 && isHas % 2 != 0,
+      command:e.pasang
     };
   });
   // cek is single el
@@ -27,9 +28,11 @@ export default function isNoSelect(getCursor: typesgetCursor):select[] {
     // cek is pasang
     let cek = re.test(get_val);
     cek = e.nama == "normal" ? !/^#/.test(get_val) : cek;
+    // console.log(e.nama+' : '+cek)
     return {
       nama: e.nama,
       cek,
+      command:e.pasang
     };
   });
   const result = single_el.concat(couple_el) as select[];

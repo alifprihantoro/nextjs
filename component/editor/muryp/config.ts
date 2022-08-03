@@ -6,7 +6,7 @@ export const toolbar_couple = [
   { pasang: "```", nama: "code block" },
 ];
 export const toolbar_single = [
-  { pasang: "", nama: "normal" },
+  { pasang: "normal", nama: "normal" },
   { pasang: "#", nama: "heading 1" },
   { pasang: "##", nama: "heading 2" },
   { pasang: "###", nama: "heading 3" },

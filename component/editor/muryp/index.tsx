@@ -9,6 +9,11 @@ import cekToolbar from "./cek-toolbar";
 export default function TesEditorText() {
   return (
     <div>
+      <style>{`
+        .use {
+          background-color:red;
+        }
+      `}</style>
       <textarea onClick={cekToolbar} onKeyDown={cekToolbar} id="area" className="w-full h-32" ></textarea>
       <OptionToolbar toolbar={toolbar_single} btnToolbar={btnToolbarSingle}/>
       <BtnToolbar toolbar={toolbar_couple} btnToolbar={btnToolbar}/>
