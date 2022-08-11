@@ -7,7 +7,7 @@ import linkMarkdownBtn from "./link";
 import cekToolbar from "./cek-toolbar";
 import { list_icon } from "./icon";
 
-export default function TesEditorText() {
+export default function TesEditorText({setValue}:any) {
   const class_name = "bg-blue-900/80 p-2 m-1 rounded text-white";
   const icon = list_icon
     .map((e) => `#${e.nama.replace(/\s/g, "-")}-btn {${e.svg}}`)
@@ -61,6 +61,8 @@ export default function TesEditorText() {
         className="bg-blue-100 w-full max-w-[720px] rounded h-32 block "
         onClick={cekToolbar}
         onKeyDown={cekToolbar}
+        onKeyUp={cekToolbar}
+        onChange={e=>setValue(e.target.value)}
         id="area"
       ></textarea>
     </div>

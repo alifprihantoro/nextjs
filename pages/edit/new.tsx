@@ -1,13 +1,14 @@
 import { doc, setDoc } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../../component/button";
-import MyEditor from "../../component/editor";
 import EditorInfoPost from "../../component/editor/info";
+import TesEditorText from "../../component/editor/muryp";
 import { loginContext, LoginContext } from "../../context/login";
 import { FirebaseFireStore } from "../../service/firebase";
 
 export default function EditNew() {
   const context = useContext(LoginContext) as loginContext;
+  const [value, setValue] = useState("");
   const default_data = {
     judul: "",
     link: "",
@@ -47,11 +48,20 @@ export default function EditNew() {
       alert("gagal update data!");
     }
   };
+  const md = require("markdown-it")({
+    html: false, // Enable HTML tags in source
+    xhtmlOut: false, // Use '/' to close single tags (<br />).
+    breaks: false, // Convert '\n' in paragraphs into <br>
+    langPrefix: "language-", // CSS language prefix for fenced blocks. Can be
+    linkify: true, // Autoconvert URL-like text to links
+    typographer: false,
+  });
   return (
     <>
       <Button click={(e) => click(e)}>save</Button>
-      <EditorInfoPost state={state} />
-      <MyEditor content={content} setContent={setContent} />
+      <EditorInfoPost state={state}/>
+      <TesEditorText setValue={setValue} />
+      <div dangerouslySetInnerHTML={{ __html: md.render(value) }} />
     </>
   );
 }
