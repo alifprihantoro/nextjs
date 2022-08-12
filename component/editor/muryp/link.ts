@@ -1,3 +1,4 @@
+import {getMiddlewareRegex} from "next/dist/shared/lib/router/utils/route-regex";
 import getCursor from "./get-cursor";
 
 export default function linkMarkdownBtn(isImage: boolean) {
